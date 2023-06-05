@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package mafia;
+
+service Mafia {
+  rpc Listen(stream Message) returns (stream Message) {}
+}
+
+message Message {
+  string message =1;
+}
