@@ -3,9 +3,24 @@ syntax = "proto3";
 package mafia;
 
 service Mafia {
-  rpc Listen(stream Message) returns (stream Message) {}
+  rpc Connect(UserName) returns (UserId) {}
+  rpc Disconnect(UserId) returns (DisconnectResponse) {}
+  rpc GetUsers(GetUsersRequest) returns (stream User) {}
 }
 
-message Message {
-  string message =1;
+message UserName {
+  string name = 1;
+}
+
+message UserId {
+  int32 id = 1;
+}
+
+message DisconnectResponse {}
+
+message GetUsersRequest {}
+
+message User {
+  int32 id = 1;
+  string name = 2;
 }

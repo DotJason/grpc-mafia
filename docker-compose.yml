@@ -1,0 +1,15 @@
+version: "3"
+
+services:
+  server:
+    build: .
+    command: python server/server.py
+    ports:
+      - "50051:50051"
+
+  client:
+    build: .
+    command: python client/client.py
+    network_mode: host
+    depends_on:
+      - server
