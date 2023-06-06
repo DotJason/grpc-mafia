@@ -3,8 +3,8 @@ from threading import Thread
 # import logging
 
 import grpc
-import mafia_pb2
-import mafia_pb2_grpc
+from proto import mafia_pb2
+from proto import mafia_pb2_grpc
 
 
 from lib.users import User, UserManager
