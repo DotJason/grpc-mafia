@@ -3,13 +3,22 @@ version: "3"
 services:
   server:
     build: .
-    command: python server/server.py
+    command: python -u server/server.py
     ports:
       - "50051:50051"
 
-  client:
+  client_player:
     build: .
-    command: python client/client.py
+    command: python client/main.py -u "John_Doe" localhost:50051
     network_mode: host
+    depends_on:
+      - server
+
+  client_bot:
+    build: .
+    command: python client/main.py -b localhost:50051
+    network_mode: host
+    deploy:
+      replicas: 3
     depends_on:
       - server

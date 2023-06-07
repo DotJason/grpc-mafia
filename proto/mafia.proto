@@ -6,6 +6,8 @@ service Mafia {
   rpc Connect(UserName) returns (UserId) {}
   rpc Disconnect(UserId) returns (DisconnectResponse) {}
   rpc GetUsers(GetUsersRequest) returns (stream User) {}
+
+  rpc GetSession(UserId) returns (GetSessionResponse) {}
 }
 
 message UserName {
@@ -23,4 +25,9 @@ message GetUsersRequest {}
 message User {
   int32 id = 1;
   string name = 2;
+}
+
+message GetSessionResponse {
+  int32 session_id = 1;
+  bool is_session_present = 2;
 }

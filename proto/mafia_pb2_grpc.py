@@ -29,6 +29,11 @@ class MafiaStub(object):
                 request_serializer=proto_dot_mafia__pb2.GetUsersRequest.SerializeToString,
                 response_deserializer=proto_dot_mafia__pb2.User.FromString,
                 )
+        self.GetSession = channel.unary_unary(
+                '/mafia.Mafia/GetSession',
+                request_serializer=proto_dot_mafia__pb2.UserId.SerializeToString,
+                response_deserializer=proto_dot_mafia__pb2.GetSessionResponse.FromString,
+                )
 
 
 class MafiaServicer(object):
@@ -52,6 +57,12 @@ class MafiaServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def GetSession(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_MafiaServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -69,6 +80,11 @@ def add_MafiaServicer_to_server(servicer, server):
                     servicer.GetUsers,
                     request_deserializer=proto_dot_mafia__pb2.GetUsersRequest.FromString,
                     response_serializer=proto_dot_mafia__pb2.User.SerializeToString,
+            ),
+            'GetSession': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetSession,
+                    request_deserializer=proto_dot_mafia__pb2.UserId.FromString,
+                    response_serializer=proto_dot_mafia__pb2.GetSessionResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -128,5 +144,22 @@ class Mafia(object):
         return grpc.experimental.unary_stream(request, target, '/mafia.Mafia/GetUsers',
             proto_dot_mafia__pb2.GetUsersRequest.SerializeToString,
             proto_dot_mafia__pb2.User.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetSession(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mafia.Mafia/GetSession',
+            proto_dot_mafia__pb2.UserId.SerializeToString,
+            proto_dot_mafia__pb2.GetSessionResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

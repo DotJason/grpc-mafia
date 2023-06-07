@@ -8,6 +8,14 @@ class DisconnectResponse(_message.Message):
     __slots__ = []
     def __init__(self) -> None: ...
 
+class GetSessionResponse(_message.Message):
+    __slots__ = ["is_session_present", "session_id"]
+    IS_SESSION_PRESENT_FIELD_NUMBER: _ClassVar[int]
+    SESSION_ID_FIELD_NUMBER: _ClassVar[int]
+    is_session_present: bool
+    session_id: int
+    def __init__(self, session_id: _Optional[int] = ..., is_session_present: bool = ...) -> None: ...
+
 class GetUsersRequest(_message.Message):
     __slots__ = []
     def __init__(self) -> None: ...
