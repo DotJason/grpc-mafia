@@ -26,7 +26,7 @@ class Game:
     def init_players(self):
         self.roles = self.role_list[:self.player_count]
 
-        # shuffle(self.roles)
+        shuffle(self.roles)
 
         for i, role in enumerate(self.roles):
             new_player = Player(self.users[i], i, role)
