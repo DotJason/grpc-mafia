@@ -29,16 +29,23 @@ class SessionManager(SimpleStorage):
         if not self.is_session_ready():
             raise NotEnoughPlayersException
 
-        player_list = []
+        user_list = []
         for i in range(self.player_count_for_session):
-            player_list.append(self.user_queue.get())
+            user_list.append(self.user_queue.get())
 
-        new_session = Session(player_list)
+        new_session = Session(user_list)
         session_id = self.add(new_session)
 
-        for player in player_list:
-            self.user_manager_context.user_join_session(player, session_id)
+        for i, user in enumerate(user_list):
+            self.user_manager_context.user_join_session(user, session_id, new_session.game.players[i])
 
         print(f"Started session id {session_id}")
 
         return 0
+
+    def get_session_by_user_id(self, user_id):
+        user = self.user_manager_context[user_id]
+        session_id = user.session_id
+        session = self[session_id]
+
+        return session

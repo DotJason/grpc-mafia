@@ -24,15 +24,50 @@ class MafiaStub(object):
                 request_serializer=proto_dot_mafia__pb2.UserId.SerializeToString,
                 response_deserializer=proto_dot_mafia__pb2.DisconnectResponse.FromString,
                 )
-        self.GetUsers = channel.unary_stream(
-                '/mafia.Mafia/GetUsers',
-                request_serializer=proto_dot_mafia__pb2.GetUsersRequest.SerializeToString,
-                response_deserializer=proto_dot_mafia__pb2.User.FromString,
-                )
         self.GetSession = channel.unary_unary(
                 '/mafia.Mafia/GetSession',
                 request_serializer=proto_dot_mafia__pb2.UserId.SerializeToString,
                 response_deserializer=proto_dot_mafia__pb2.GetSessionResponse.FromString,
+                )
+        self.GetPlayers = channel.unary_stream(
+                '/mafia.Mafia/GetPlayers',
+                request_serializer=proto_dot_mafia__pb2.UserId.SerializeToString,
+                response_deserializer=proto_dot_mafia__pb2.Player.FromString,
+                )
+        self.GetGameStatus = channel.unary_unary(
+                '/mafia.Mafia/GetGameStatus',
+                request_serializer=proto_dot_mafia__pb2.UserId.SerializeToString,
+                response_deserializer=proto_dot_mafia__pb2.GetGameStatusResponse.FromString,
+                )
+        self.GetLastRevealed = channel.unary_unary(
+                '/mafia.Mafia/GetLastRevealed',
+                request_serializer=proto_dot_mafia__pb2.UserId.SerializeToString,
+                response_deserializer=proto_dot_mafia__pb2.GetLastRevealedResponse.FromString,
+                )
+        self.Vote = channel.unary_unary(
+                '/mafia.Mafia/Vote',
+                request_serializer=proto_dot_mafia__pb2.TargetRequest.SerializeToString,
+                response_deserializer=proto_dot_mafia__pb2.VoteResponse.FromString,
+                )
+        self.VoteEndDay = channel.unary_unary(
+                '/mafia.Mafia/VoteEndDay',
+                request_serializer=proto_dot_mafia__pb2.UserId.SerializeToString,
+                response_deserializer=proto_dot_mafia__pb2.VoteEndDayResponse.FromString,
+                )
+        self.MafiaAction = channel.unary_unary(
+                '/mafia.Mafia/MafiaAction',
+                request_serializer=proto_dot_mafia__pb2.TargetRequest.SerializeToString,
+                response_deserializer=proto_dot_mafia__pb2.MafiaActionResponse.FromString,
+                )
+        self.SheriffAction = channel.unary_unary(
+                '/mafia.Mafia/SheriffAction',
+                request_serializer=proto_dot_mafia__pb2.TargetRequest.SerializeToString,
+                response_deserializer=proto_dot_mafia__pb2.SheriffActionResponse.FromString,
+                )
+        self.SheriffReveal = channel.unary_unary(
+                '/mafia.Mafia/SheriffReveal',
+                request_serializer=proto_dot_mafia__pb2.TargetRequest.SerializeToString,
+                response_deserializer=proto_dot_mafia__pb2.SheriffRevealResponse.FromString,
                 )
 
 
@@ -51,13 +86,55 @@ class MafiaServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def GetUsers(self, request, context):
+    def GetSession(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
-    def GetSession(self, request, context):
+    def GetPlayers(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetGameStatus(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def GetLastRevealed(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def Vote(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def VoteEndDay(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def MafiaAction(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SheriffAction(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
+    def SheriffReveal(self, request, context):
         """Missing associated documentation comment in .proto file."""
         context.set_code(grpc.StatusCode.UNIMPLEMENTED)
         context.set_details('Method not implemented!')
@@ -76,15 +153,50 @@ def add_MafiaServicer_to_server(servicer, server):
                     request_deserializer=proto_dot_mafia__pb2.UserId.FromString,
                     response_serializer=proto_dot_mafia__pb2.DisconnectResponse.SerializeToString,
             ),
-            'GetUsers': grpc.unary_stream_rpc_method_handler(
-                    servicer.GetUsers,
-                    request_deserializer=proto_dot_mafia__pb2.GetUsersRequest.FromString,
-                    response_serializer=proto_dot_mafia__pb2.User.SerializeToString,
-            ),
             'GetSession': grpc.unary_unary_rpc_method_handler(
                     servicer.GetSession,
                     request_deserializer=proto_dot_mafia__pb2.UserId.FromString,
                     response_serializer=proto_dot_mafia__pb2.GetSessionResponse.SerializeToString,
+            ),
+            'GetPlayers': grpc.unary_stream_rpc_method_handler(
+                    servicer.GetPlayers,
+                    request_deserializer=proto_dot_mafia__pb2.UserId.FromString,
+                    response_serializer=proto_dot_mafia__pb2.Player.SerializeToString,
+            ),
+            'GetGameStatus': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetGameStatus,
+                    request_deserializer=proto_dot_mafia__pb2.UserId.FromString,
+                    response_serializer=proto_dot_mafia__pb2.GetGameStatusResponse.SerializeToString,
+            ),
+            'GetLastRevealed': grpc.unary_unary_rpc_method_handler(
+                    servicer.GetLastRevealed,
+                    request_deserializer=proto_dot_mafia__pb2.UserId.FromString,
+                    response_serializer=proto_dot_mafia__pb2.GetLastRevealedResponse.SerializeToString,
+            ),
+            'Vote': grpc.unary_unary_rpc_method_handler(
+                    servicer.Vote,
+                    request_deserializer=proto_dot_mafia__pb2.TargetRequest.FromString,
+                    response_serializer=proto_dot_mafia__pb2.VoteResponse.SerializeToString,
+            ),
+            'VoteEndDay': grpc.unary_unary_rpc_method_handler(
+                    servicer.VoteEndDay,
+                    request_deserializer=proto_dot_mafia__pb2.UserId.FromString,
+                    response_serializer=proto_dot_mafia__pb2.VoteEndDayResponse.SerializeToString,
+            ),
+            'MafiaAction': grpc.unary_unary_rpc_method_handler(
+                    servicer.MafiaAction,
+                    request_deserializer=proto_dot_mafia__pb2.TargetRequest.FromString,
+                    response_serializer=proto_dot_mafia__pb2.MafiaActionResponse.SerializeToString,
+            ),
+            'SheriffAction': grpc.unary_unary_rpc_method_handler(
+                    servicer.SheriffAction,
+                    request_deserializer=proto_dot_mafia__pb2.TargetRequest.FromString,
+                    response_serializer=proto_dot_mafia__pb2.SheriffActionResponse.SerializeToString,
+            ),
+            'SheriffReveal': grpc.unary_unary_rpc_method_handler(
+                    servicer.SheriffReveal,
+                    request_deserializer=proto_dot_mafia__pb2.TargetRequest.FromString,
+                    response_serializer=proto_dot_mafia__pb2.SheriffRevealResponse.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -131,23 +243,6 @@ class Mafia(object):
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
     @staticmethod
-    def GetUsers(request,
-            target,
-            options=(),
-            channel_credentials=None,
-            call_credentials=None,
-            insecure=False,
-            compression=None,
-            wait_for_ready=None,
-            timeout=None,
-            metadata=None):
-        return grpc.experimental.unary_stream(request, target, '/mafia.Mafia/GetUsers',
-            proto_dot_mafia__pb2.GetUsersRequest.SerializeToString,
-            proto_dot_mafia__pb2.User.FromString,
-            options, channel_credentials,
-            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
-
-    @staticmethod
     def GetSession(request,
             target,
             options=(),
@@ -161,5 +256,141 @@ class Mafia(object):
         return grpc.experimental.unary_unary(request, target, '/mafia.Mafia/GetSession',
             proto_dot_mafia__pb2.UserId.SerializeToString,
             proto_dot_mafia__pb2.GetSessionResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetPlayers(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_stream(request, target, '/mafia.Mafia/GetPlayers',
+            proto_dot_mafia__pb2.UserId.SerializeToString,
+            proto_dot_mafia__pb2.Player.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetGameStatus(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mafia.Mafia/GetGameStatus',
+            proto_dot_mafia__pb2.UserId.SerializeToString,
+            proto_dot_mafia__pb2.GetGameStatusResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def GetLastRevealed(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mafia.Mafia/GetLastRevealed',
+            proto_dot_mafia__pb2.UserId.SerializeToString,
+            proto_dot_mafia__pb2.GetLastRevealedResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def Vote(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mafia.Mafia/Vote',
+            proto_dot_mafia__pb2.TargetRequest.SerializeToString,
+            proto_dot_mafia__pb2.VoteResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def VoteEndDay(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mafia.Mafia/VoteEndDay',
+            proto_dot_mafia__pb2.UserId.SerializeToString,
+            proto_dot_mafia__pb2.VoteEndDayResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def MafiaAction(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mafia.Mafia/MafiaAction',
+            proto_dot_mafia__pb2.TargetRequest.SerializeToString,
+            proto_dot_mafia__pb2.MafiaActionResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SheriffAction(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mafia.Mafia/SheriffAction',
+            proto_dot_mafia__pb2.TargetRequest.SerializeToString,
+            proto_dot_mafia__pb2.SheriffActionResponse.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def SheriffReveal(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/mafia.Mafia/SheriffReveal',
+            proto_dot_mafia__pb2.TargetRequest.SerializeToString,
+            proto_dot_mafia__pb2.SheriffRevealResponse.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

@@ -5,10 +5,40 @@ package mafia;
 service Mafia {
   rpc Connect(UserName) returns (UserId) {}
   rpc Disconnect(UserId) returns (DisconnectResponse) {}
-  rpc GetUsers(GetUsersRequest) returns (stream User) {}
 
   rpc GetSession(UserId) returns (GetSessionResponse) {}
+
+  rpc GetPlayers(UserId) returns (stream Player) {}
+  rpc GetGameStatus(UserId) returns (GetGameStatusResponse) {}
+  rpc GetLastRevealed(UserId) returns (GetLastRevealedResponse) {}
+
+  rpc Vote(TargetRequest) returns (VoteResponse) {}
+  rpc VoteEndDay(UserId) returns (VoteEndDayResponse) {}
+  rpc MafiaAction(TargetRequest) returns (MafiaActionResponse) {}
+  rpc SheriffAction(TargetRequest) returns (SheriffActionResponse) {}
+  rpc SheriffReveal(TargetRequest) returns (SheriffRevealResponse) {}
 }
+
+
+enum Role {
+  NONE = 0;
+  CIVILIAN = 1;
+  MAFIA = 2;
+  SHERIFF = 3;
+}
+
+enum Status {
+  ALIVE = 0;
+  GHOST = 1;
+}
+
+enum GameStatus {
+  DAY = 0;
+  NIGHT = 1;
+  CIVILIAN_WIN = 2;
+  MAFIA_WIN = 3;
+}
+
 
 message UserName {
   string name = 1;
@@ -20,14 +50,40 @@ message UserId {
 
 message DisconnectResponse {}
 
-message GetUsersRequest {}
-
-message User {
-  int32 id = 1;
-  string name = 2;
-}
-
 message GetSessionResponse {
   int32 session_id = 1;
   bool is_session_present = 2;
+  int32 player_id = 3;
+  Role role = 4;
 }
+
+message GetLastRevealedResponse {
+  int32 player_id = 1;
+  bool has_been_revealed = 2;
+}
+
+message Player {
+  string username = 1;
+  Role role = 2;
+  Status status = 3;
+  bool is_role_revealed = 4;
+}
+
+message GetGameStatusResponse {
+  GameStatus status = 1;
+}
+
+message MafiaActionResponse {}
+
+message SheriffActionResponse {}
+
+message TargetRequest {
+  int32 source_user_id = 1;
+  int32 target_player_id = 2;
+}
+
+message VoteResponse {}
+
+message VoteEndDayResponse {}
+
+message SheriffRevealResponse {}

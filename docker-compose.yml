@@ -7,16 +7,9 @@ services:
     ports:
       - "50051:50051"
 
-  client_player:
-    build: .
-    command: python client/main.py -u "John_Doe" localhost:50051
-    network_mode: host
-    depends_on:
-      - server
-
   client_bot:
     build: .
-    command: python client/main.py -b localhost:50051
+    command: python client/client_bot.py localhost:50051
     network_mode: host
     deploy:
       replicas: 3

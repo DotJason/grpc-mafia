@@ -11,8 +11,8 @@ class UserManager(SimpleStorage):
         new_user = User(username)
         return super().add(new_user)
 
-    def get_user_session(self, user_id):
-        return self[user_id].session_id
+    def user_join_session(self, user_id, session_id, player):
+        self[user_id].join_session(session_id, player)
 
-    def user_join_session(self, user_id, session_id):
-        self[user_id].session_id = session_id
+    def get_player_id_by_user_id(self, user_id):
+        return self[user_id].player_id

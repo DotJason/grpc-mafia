@@ -6,4 +6,7 @@ class Vote:
         self.votes[source] = target
 
     def tally(self):
+        if len(self.votes.keys()) == 0:
+            return None
+
         return max(self.votes, key=self.votes.get)

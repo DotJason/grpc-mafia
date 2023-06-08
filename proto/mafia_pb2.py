@@ -13,25 +13,45 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x11proto/mafia.proto\x12\x05mafia\"\x18\n\x08UserName\x12\x0c\n\x04name\x18\x01 \x01(\t\"\x14\n\x06UserId\x12\n\n\x02id\x18\x01 \x01(\x05\"\x14\n\x12\x44isconnectResponse\"\x11\n\x0fGetUsersRequest\" \n\x04User\x12\n\n\x02id\x18\x01 \x01(\x05\x12\x0c\n\x04name\x18\x02 \x01(\t\"D\n\x12GetSessionResponse\x12\x12\n\nsession_id\x18\x01 \x01(\x05\x12\x1a\n\x12is_session_present\x18\x02 \x01(\x08\x32\xdd\x01\n\x05Mafia\x12+\n\x07\x43onnect\x12\x0f.mafia.UserName\x1a\r.mafia.UserId\"\x00\x12\x38\n\nDisconnect\x12\r.mafia.UserId\x1a\x19.mafia.DisconnectResponse\"\x00\x12\x33\n\x08GetUsers\x12\x16.mafia.GetUsersRequest\x1a\x0b.mafia.User\"\x00\x30\x01\x12\x38\n\nGetSession\x12\r.mafia.UserId\x1a\x19.mafia.GetSessionResponse\"\x00\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x11proto/mafia.proto\x12\x05mafia\"\x18\n\x08UserName\x12\x0c\n\x04name\x18\x01 \x01(\t\"\x14\n\x06UserId\x12\n\n\x02id\x18\x01 \x01(\x05\"\x14\n\x12\x44isconnectResponse\"r\n\x12GetSessionResponse\x12\x12\n\nsession_id\x18\x01 \x01(\x05\x12\x1a\n\x12is_session_present\x18\x02 \x01(\x08\x12\x11\n\tplayer_id\x18\x03 \x01(\x05\x12\x19\n\x04role\x18\x04 \x01(\x0e\x32\x0b.mafia.Role\"G\n\x17GetLastRevealedResponse\x12\x11\n\tplayer_id\x18\x01 \x01(\x05\x12\x19\n\x11has_been_revealed\x18\x02 \x01(\x08\"n\n\x06Player\x12\x10\n\x08username\x18\x01 \x01(\t\x12\x19\n\x04role\x18\x02 \x01(\x0e\x32\x0b.mafia.Role\x12\x1d\n\x06status\x18\x03 \x01(\x0e\x32\r.mafia.Status\x12\x18\n\x10is_role_revealed\x18\x04 \x01(\x08\":\n\x15GetGameStatusResponse\x12!\n\x06status\x18\x01 \x01(\x0e\x32\x11.mafia.GameStatus\"\x15\n\x13MafiaActionResponse\"\x17\n\x15SheriffActionResponse\"A\n\rTargetRequest\x12\x16\n\x0esource_user_id\x18\x01 \x01(\x05\x12\x18\n\x10target_player_id\x18\x02 \x01(\x05\"\x0e\n\x0cVoteResponse\"\x14\n\x12VoteEndDayResponse\"\x17\n\x15SheriffRevealResponse*6\n\x04Role\x12\x08\n\x04NONE\x10\x00\x12\x0c\n\x08\x43IVILIAN\x10\x01\x12\t\n\x05MAFIA\x10\x02\x12\x0b\n\x07SHERIFF\x10\x03*\x1e\n\x06Status\x12\t\n\x05\x41LIVE\x10\x00\x12\t\n\x05GHOST\x10\x01*A\n\nGameStatus\x12\x07\n\x03\x44\x41Y\x10\x00\x12\t\n\x05NIGHT\x10\x01\x12\x10\n\x0c\x43IVILIAN_WIN\x10\x02\x12\r\n\tMAFIA_WIN\x10\x03\x32\x9c\x05\n\x05Mafia\x12+\n\x07\x43onnect\x12\x0f.mafia.UserName\x1a\r.mafia.UserId\"\x00\x12\x38\n\nDisconnect\x12\r.mafia.UserId\x1a\x19.mafia.DisconnectResponse\"\x00\x12\x38\n\nGetSession\x12\r.mafia.UserId\x1a\x19.mafia.GetSessionResponse\"\x00\x12.\n\nGetPlayers\x12\r.mafia.UserId\x1a\r.mafia.Player\"\x00\x30\x01\x12>\n\rGetGameStatus\x12\r.mafia.UserId\x1a\x1c.mafia.GetGameStatusResponse\"\x00\x12\x42\n\x0fGetLastRevealed\x12\r.mafia.UserId\x1a\x1e.mafia.GetLastRevealedResponse\"\x00\x12\x33\n\x04Vote\x12\x14.mafia.TargetRequest\x1a\x13.mafia.VoteResponse\"\x00\x12\x38\n\nVoteEndDay\x12\r.mafia.UserId\x1a\x19.mafia.VoteEndDayResponse\"\x00\x12\x41\n\x0bMafiaAction\x12\x14.mafia.TargetRequest\x1a\x1a.mafia.MafiaActionResponse\"\x00\x12\x45\n\rSheriffAction\x12\x14.mafia.TargetRequest\x1a\x1c.mafia.SheriffActionResponse\"\x00\x12\x45\n\rSheriffReveal\x12\x14.mafia.TargetRequest\x1a\x1c.mafia.SheriffRevealResponse\"\x00\x62\x06proto3')
 
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, globals())
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'proto.mafia_pb2', globals())
 if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
+  _ROLE._serialized_start=637
+  _ROLE._serialized_end=691
+  _STATUS._serialized_start=693
+  _STATUS._serialized_end=723
+  _GAMESTATUS._serialized_start=725
+  _GAMESTATUS._serialized_end=790
   _USERNAME._serialized_start=28
   _USERNAME._serialized_end=52
   _USERID._serialized_start=54
   _USERID._serialized_end=74
   _DISCONNECTRESPONSE._serialized_start=76
   _DISCONNECTRESPONSE._serialized_end=96
-  _GETUSERSREQUEST._serialized_start=98
-  _GETUSERSREQUEST._serialized_end=115
-  _USER._serialized_start=117
-  _USER._serialized_end=149
-  _GETSESSIONRESPONSE._serialized_start=151
-  _GETSESSIONRESPONSE._serialized_end=219
-  _MAFIA._serialized_start=222
-  _MAFIA._serialized_end=443
+  _GETSESSIONRESPONSE._serialized_start=98
+  _GETSESSIONRESPONSE._serialized_end=212
+  _GETLASTREVEALEDRESPONSE._serialized_start=214
+  _GETLASTREVEALEDRESPONSE._serialized_end=285
+  _PLAYER._serialized_start=287
+  _PLAYER._serialized_end=397
+  _GETGAMESTATUSRESPONSE._serialized_start=399
+  _GETGAMESTATUSRESPONSE._serialized_end=457
+  _MAFIAACTIONRESPONSE._serialized_start=459
+  _MAFIAACTIONRESPONSE._serialized_end=480
+  _SHERIFFACTIONRESPONSE._serialized_start=482
+  _SHERIFFACTIONRESPONSE._serialized_end=505
+  _TARGETREQUEST._serialized_start=507
+  _TARGETREQUEST._serialized_end=572
+  _VOTERESPONSE._serialized_start=574
+  _VOTERESPONSE._serialized_end=588
+  _VOTEENDDAYRESPONSE._serialized_start=590
+  _VOTEENDDAYRESPONSE._serialized_end=610
+  _SHERIFFREVEALRESPONSE._serialized_start=612
+  _SHERIFFREVEALRESPONSE._serialized_end=635
+  _MAFIA._serialized_start=793
+  _MAFIA._serialized_end=1461
 # @@protoc_insertion_point(module_scope)
