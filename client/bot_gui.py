@@ -1,16 +1,19 @@
 from client.cli import CLI
 import time
-from random import choice
+from random import choice, randint
+from lib.name_generator import random_name
 
 from client.gui import GUI
 
 
 class BotGUI(GUI):
     def __init__(self):
-        self.cli = None
+        super().__init__()
 
     def set_cli(self, cli: CLI):
         self.cli = cli
+
+        self.init_chat_channel()
 
     def mainloop(self):
         client_context = self.cli.client_context
@@ -18,6 +21,10 @@ class BotGUI(GUI):
         while True:
             time.sleep(1)
             self.cli.process_command(self.generate_bot_command())
+
+            if randint(0, 2) == 0:
+                msg = f"{client_context.username}: {random_name(capitalize_first_letter=False)}"
+                self.chat_channel.basic_publish(exchange='', routing_key=self.queue_id, body=msg)
 
     def log(self, s):
         print(s)
