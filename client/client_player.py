@@ -30,9 +30,10 @@ def run():
     cli = CLI(client_controller, gui)
 
     gui.set_cli(cli)
-    gui.flush_log()
+    gui.flush_logs()
     gui.mainloop()
 
+    gui.close_chat_connection()
     channel.close()
 
 

@@ -3,7 +3,7 @@ from string import ascii_lowercase
 from string import ascii_uppercase
 
 
-def random_name():
+def random_name(capitalize_first_letter=True):
     vowels = 'aeiouy'
     syllables = ''.join(set(ascii_lowercase).difference(vowels))
 
@@ -19,6 +19,7 @@ def random_name():
 
         is_current_vowel = not is_current_vowel
 
-    name[0] = name[0].upper()
+    if capitalize_first_letter:
+        name[0] = name[0].upper()
 
     return ''.join(name)

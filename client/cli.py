@@ -73,7 +73,10 @@ class CLI:
         reveals_watcher.start()
 
     def log(self, s, buffer=False):
-        self.gui.log(s)
+        if buffer:
+            self.gui.log_buffer(s)
+        else:
+            self.gui.log(s)
 
     def print_help(self, *args):
         self.log(help_string())
