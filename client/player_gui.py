@@ -1,9 +1,14 @@
+import os
 import pika
 from threading import Thread
 from tkinter import Tk, Button, Text
 from client.cli import CLI
 
 from client.gui import GUI
+
+
+if os.environ.get('DISPLAY', '') == '':
+    os.environ.__setitem__('DISPLAY', ':0.0')
 
 
 def add_message(s, text_field):
